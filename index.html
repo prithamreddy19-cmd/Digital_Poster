@@ -1,190 +1,550 @@
-<style>
-  :root {
-    --primary: #2563eb;
-    --secondary: #1e293b;
-    --accent: #0ea5e9;
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #2563eb 65%, #0ea5e9 100%);
-    --highlight: #f1f5f9;
-    --navbar-bg: rgba(30, 41, 59, 0.90);
-    --card-bg: rgba(255,255,255,0.93);
-    --heading-color: #173a7c;
-    --desc-color: #334155;
-    --label-color: #0ea5e9;
-    --detail-color: #2563eb;
-    --muted: #64748b;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', Arial, sans-serif;
-    background: var(--bg-gradient);
-    min-height: 100vh;
-    color: var(--desc-color);
-    overflow-x: hidden;
-  }
-  nav {
-    /* unchanged */
-  }
-  .nav-container {
-    /* unchanged */
-  }
-  .poster-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 900;
-    letter-spacing: 0.07em;
-    color: var(--accent);
-    text-shadow: 0 2px 16px #0ea5e966;
-    transition: color 0.2s;
-  }
-  .nav-links a {
-    color: #f1f5f9;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.08rem;
-    font-family: 'Montserrat', sans-serif;
-    padding: 7px 18px;
-    border-radius: 22px;
-    transition: background 0.25s, color 0.2s, box-shadow 0.2s;
-  }
-  .nav-links a:hover,
-  .nav-links a:focus {
-    color: var(--primary);
-    background: #fff;
-    box-shadow: 0 2px 10px #0ea5e944;
-    outline: none;
-  }
-  .poster-main-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--heading-color);
-    margin-bottom: 18px;
-    text-align: center;
-    letter-spacing: 0.08em;
-    text-shadow: 0 2px 16px #0ea5e944;
-    transition: color 0.18s;
-  }
-  .card-desc {
-    font-size: 1.18rem;
-    color: var(--muted);
-    margin-bottom: 28px;
-    text-align: center;
-    line-height: 1.5;
-    font-weight: 500;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-  .details-list .label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: var(--label-color);
-    margin-right: 4px;
-    letter-spacing: 0.02em;
-  }
-  .details-list span {
-    color: var(--detail-color);
-    font-weight: 600;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-  .highlight-card h2 {
-    color: var(--accent);
-    margin-bottom: 14px;
-    font-size: 1.18rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    letter-spacing: 0.03em;
-  }
-  .highlight-card ul {
-    color: var(--desc-color);
-    font-size: 1.09rem;
-    padding-left: 22px;
-    line-height: 1.7;
-    margin: 0;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-  .register-btn {
-    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    padding: 15px 42px;
-    border-radius: 999px;
-    font-size: 1.18rem;
-    text-decoration: none;
-    box-shadow: 0 4px 24px #0ea5e944, 0 1.5px 8px #2563eb44;
-    transition: background 0.25s, transform 0.17s, box-shadow 0.2s;
-    margin-bottom: 12px;
-    letter-spacing: 0.03em;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
-  .register-btn:hover, .register-btn:focus {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
-    transform: scale(1.045) translateY(-2px);
-    box-shadow: 0 8px 32px #2563eb33, 0 2px 18px #0ea5e966;
-    outline: none;
-  }
-  .register-section p {
-    margin-top: 8px;
-    font-size: 1.06rem;
-    color: var(--muted);
-    text-align: center;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-  .contact-box h3 {
-    color: var(--accent);
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 1.17rem;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-  }
-  .contact-box a {
-    color: var(--primary);
-    text-decoration: underline;
-    margin-bottom: 2px;
-    display: inline-block;
-    transition: color 0.19s;
-    font-family: 'Montserrat', sans-serif;
-  }
-  .contact-box a:hover {
-    color: var(--accent);
-  }
-  .contact-box .insta-link {
-    color: var(--accent);
-    text-decoration: underline;
-    transition: color 0.19s;
-  }
-  .contact-box .insta-link:hover {
-    color: var(--primary);
-  }
-  .contact-box p, .contact-box span {
-    color: var(--desc-color);
-    font-size: 1rem;
-    margin-bottom: 4px;
-    text-align: center;
-    font-family: 'Roboto', Arial, sans-serif;
-  }
-  footer {
-    text-align: center;
-    padding: 28px 0 13px 0;
-    color: #fff;
-    opacity: 0.93;
-    font-size: 1.04rem;
-    margin-top: 38px;
-    letter-spacing: 0.03em;
-    text-shadow: 0 2px 12px #2563eb55;
-    background: linear-gradient(90deg, #1e293bcc 20%, #0ea5e9cc 100%);
-    border-top-left-radius: 70px 30px;
-    border-top-right-radius: 70px 30px;
-    box-shadow: 0 -4px 20px #0ea5e955;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-  }
-  /* Leave the rest of your CSS unchanged... */
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Campus Fest 2025 - Digital Event Poster</title>
+  <!-- Enhanced Google Fonts: More weights for Montserrat & Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e293b;
+      --accent: #0ea5e9;
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #2563eb 65%, #0ea5e9 100%);
+      --highlight: #f1f5f9;
+      --navbar-bg: rgba(30, 41, 59, 0.90);
+      --card-bg: rgba(255,255,255,0.93);
+      --heading-color: #173a7c;
+      --desc-color: #334155;
+      --label-color: #0ea5e9;
+      --detail-color: #2563eb;
+      --muted: #64748b;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      color: var(--desc-color);
+      overflow-x: hidden;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: var(--navbar-bg);
+      box-shadow: 0 2px 18px 0 rgba(30,41,59,0.12);
+      z-index: 100;
+      backdrop-filter: blur(4px);
+      transition: background 0.3s;
+    }
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 30px;
+      position: relative;
+    }
+    .poster-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      text-shadow: 0 2px 16px #0ea5e966;
+      transition: color 0.2s;
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      position: static;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+      width: auto;
+      flex-direction: row;
+      z-index: initial;
+    }
+    .nav-links a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.08rem;
+      font-family: 'Montserrat', sans-serif;
+      padding: 7px 18px;
+      border-radius: 22px;
+      transition: background 0.25s, color 0.2s, box-shadow 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+      background: #fff;
+      box-shadow: 0 2px 10px #0ea5e944;
+      outline: none;
+    }
+    /* Hamburger style */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 34px;
+      height: 34px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 110;
+    }
+    .nav-hamburger span {
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: #f1f5f9;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 8px;
+        align-items: flex-start;
+      }
+      .poster-title {
+        font-size: 1.4rem;
+      }
+      .nav-links {
+        position: absolute;
+        top: 62px;
+        right: 10px;
+        background: var(--navbar-bg);
+        flex-direction: column;
+        gap: 0;
+        width: 170px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px #0ea5e955;
+        padding: 10px 0;
+        display: none;
+        z-index: 105;
+        animation: menuPop 0.3s;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 13px 20px;
+        font-size: 1.08rem;
+        border-radius: 0;
+        border-bottom: 1px solid #2563eb22;
+      }
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+    }
+    /* Hamburger animation when active */
+    .nav-hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .nav-hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+    /* Nav links overlay for click outside (optional for UX) */
+    .nav-overlay {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .nav-overlay.active {
+        display: block;
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: transparent;
+        z-index: 104;
+      }
+    }
+    @keyframes menuPop {
+      from { opacity: 0; transform: scale(0.96);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 38px 8px 0;
+      margin: 0 auto;
+      min-height: 85vh;
+    }
+    section {
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 36px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      box-shadow: 0 6px 32px 0 rgba(30,41,59,0.10), 0 1.5px 4px #0ea5e933;
+      border: 1.5px solid #dbeafe;
+      padding: 32px 28px 20px;
+      margin: 0 auto 36px;
+      transition: transform 0.22s, box-shadow 0.22s;
+      will-change: transform, box-shadow;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.018);
+      box-shadow: 0 14px 36px 0 #2563eb88, 0 4px 16px #0ea5e933;
+    }
+    .poster-main-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--heading-color);
+      margin-bottom: 18px;
+      text-align: center;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 16px #0ea5e944;
+      transition: color 0.18s;
+    }
+    .poster-image {
+      width: 100%;
+      max-width: 400px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto 18px auto;
+      box-shadow: 0 4px 20px #2563eb33;
+      border: 2px solid #dbeafe;
+      background: #f1f5f9;
+      animation: popin 1.2s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popin {
+      0% { opacity:0; transform: scale(0.85);}
+      80% { opacity: 1; transform: scale(1.05);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .card-desc {
+      font-size: 1.18rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      text-align: center;
+      line-height: 1.5;
+      font-weight: 500;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .details-list span {
+      color: var(--detail-color);
+      font-weight: 600;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .details-list .label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--label-color);
+      margin-right: 4px;
+      letter-spacing: 0.02em;
+    }
+    .highlight-card {
+      background: var(--highlight);
+      border-radius: 20px;
+      padding: 22px 18px;
+      border: 1px solid #bae6fd;
+      margin-bottom: 30px;
+      box-shadow: 0 1.5px 8px #0ea5e922;
+    }
+    .highlight-card h2 {
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-size: 1.18rem;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+    .highlight-gallery {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .highlight-gallery img {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 10px #0ea5e922;
+      border: 1.5px solid #dbeafe;
+      background: #f1f5f9;
+      transition: transform 0.18s;
+    }
+    .highlight-gallery img:hover {
+      transform: scale(1.12) rotate(-2deg);
+      box-shadow: 0 6px 24px #2563eb33;
+      z-index: 2;
+    }
+    .highlight-card ul {
+      color: var(--desc-color);
+      font-size: 1.09rem;
+      padding-left: 22px;
+      line-height: 1.7;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .register-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+    .register-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      padding: 15px 42px;
+      border-radius: 999px;
+      font-size: 1.18rem;
+      text-decoration: none;
+      box-shadow: 0 4px 24px #0ea5e944, 0 1.5px 8px #2563eb44;
+      transition: background 0.25s, transform 0.17s, box-shadow 0.2s;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .register-btn:hover, .register-btn:focus {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
+      transform: scale(1.045) translateY(-2px);
+      box-shadow: 0 8px 32px #2563eb33, 0 2px 18px #0ea5e966;
+      outline: none;
+    }
+    .register-section p {
+      margin-top: 8px;
+      font-size: 1.06rem;
+      color: var(--muted);
+      text-align: center;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .contact-box h3 {
+      color: var(--accent);
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 1.17rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .contact-box a {
+      color: var(--primary);
+      text-decoration: underline;
+      margin-bottom: 2px;
+      display: inline-block;
+      transition: color 0.19s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .contact-box a:hover {
+      color: var(--accent);
+    }
+    .contact-box .insta-link {
+      color: var(--accent);
+      text-decoration: underline;
+      transition: color 0.19s;
+    }
+    .contact-box .insta-link:hover {
+      color: var(--primary);
+    }
+    .contact-box p, .contact-box span {
+      color: var(--desc-color);
+      font-size: 1rem;
+      margin-bottom: 4px;
+      text-align: center;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    footer {
+      text-align: center;
+      padding: 28px 0 13px 0;
+      color: #fff;
+      opacity: 0.93;
+      font-size: 1.04rem;
+      margin-top: 38px;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 12px #2563eb55;
+      background: linear-gradient(90deg, #1e293bcc 20%, #0ea5e9cc 100%);
+      border-top-left-radius: 70px 30px;
+      border-top-right-radius: 70px 30px;
+      box-shadow: 0 -4px 20px #0ea5e955;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    html, body {
+      scroll-behavior: smooth;
+      transition: background 0.7s;
+    }
+    @media (max-width: 550px) {
+      .poster-title,
+      .poster-main-title {
+        font-size: 1.2rem;
+      }
+      .nav-container { padding: 7px 2px;}
+      .card, section, .highlight-card { padding: 10px !important; }
+      .register-btn { font-size: 1rem; padding: 10px 18px;}
+      .poster-main-title { font-size: 1.6rem;}
+      .card, .highlight-card { border-radius: 13px; }
+      main { padding-top: 70px; }
+      .poster-image { height: 120px; }
+      .highlight-gallery img { width: 46px; height: 46px;}
+    }
+    .fadein {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.1s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-container">
+      <a href="#poster" style="text-decoration:none;"><span class="poster-title">Campus Fest</span></a>
+      <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#poster">Poster</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#register">Register</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay"></div>
+  <main>
+    <!-- Poster Section -->
+    <section id="poster" class="card fadein" style="animation-delay:0.05s;">
+      <img 
+        src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" 
+        alt="Campus Fest crowd" 
+        class="poster-image"
+      >
+      <div class="poster-main-title">Campus Fest 2025</div>
+      <div class="card-desc">
+        Join us for an <b>unforgettable day</b> of fun,<br>
+        music, food, and creativity!
+      </div>
+      <div class="details-list">
+        <div><span class="label">📅 Date:</span> <span>October 15, 2025</span></div>
+        <div><span class="label">🕒 Time:</span> <span>10:00 AM - 8:00 PM</span></div>
+        <div><span class="label">📍 Venue:</span> <span>Main Auditorium, Tech Park Campus</span></div>
+      </div>
+    </section>
+    <!-- Highlights Section -->
+    <section id="highlights" class="highlight-card fadein" style="animation-delay:0.22s;">
+      <h2>Event Highlights</h2>
+      <div class="highlight-gallery">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Music Band">
+        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=400&q=80" alt="Food Fest">
+        <img src="https://images.unsplash.com/photo-1515169273892-07a6cbcb8cde?auto=format&fit=crop&w=400&q=80" alt="Tech Expo">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Games">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Celebrity Guest">
+      </div>
+      <ul>
+        <li>🎸 Live Bands & DJ</li>
+        <li>🍔 Food Stalls & Trucks</li>
+        <li>🖥️ Tech Expo & Workshops</li>
+        <li>🎮 Games, Prizes & More!</li>
+        <li>🤩 Surprise Celebrity Guest!</li>
+      </ul>
+    </section>
+    <!-- Registration Section -->
+    <section id="register" class="register-section fadein" style="animation-delay:0.37s;">
+      <a href="https://forms.gle/your-registration-link" target="_blank" class="register-btn">Register Now</a>
+      <p>Early birds get exclusive goodies!</p>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="card contact-box fadein" style="animation-delay:0.5s;">
+      <h3>Contact</h3>
+      <p>For more info, reach out:</p>
+      <a href="mailto:events@campusfest.edu">events@campusfest.edu</a><br>
+      <span>Or DM us on Instagram: <a href="https://instagram.com/campusfest" class="insta-link">@campusfest</a></span>
+    </section>
+  </main>
+  <footer>
+    © 2025 Campus Fest. All rights reserved.
+  </footer>
+  <script>
+    // Fade-in animation on scroll & hamburger menu
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fade-in
+      const items = document.querySelectorAll('.fadein');
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        items.forEach(item => {
+          const rect = item.getBoundingClientRect();
+          if (rect.top < windowHeight - 60) item.style.opacity = 1;
+        });
+      };
+      revealOnScroll();
+      window.addEventListener('scroll', revealOnScroll);
+
+      // Hamburger logic
+      const hamburger = document.querySelector('.nav-hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const overlay = document.querySelector('.nav-overlay');
+      if (hamburger && navLinks && overlay) {
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          navLinks.classList.toggle('active');
+          overlay.classList.toggle('active');
+          hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+        });
+        // Optional: close menu when clicking outside or a nav link
+        overlay.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+          overlay.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

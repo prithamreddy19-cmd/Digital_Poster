@@ -356,12 +356,35 @@
       box-shadow: 0 12px 44px #2563eb33, 0 4px 24px #0ea5e966;
       outline: none;
     }
-    .register-section p {
+    /* --- PROMINENT EARLY BIRD TEXT --- */
+    .register-section .early-bird {
       margin-top: 10px;
-      font-size: 1.08rem;
-      color: var(--muted);
+      font-size: 1.17rem;
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      background: #f1f5f9;
+      padding: 10px 28px 10px 18px;
+      border-radius: 999px;
+      display: inline-block;
+      box-shadow: 0 3px 18px #0ea5e922;
+      letter-spacing: 0.03em;
+      border: 2.5px solid #bae6fd;
+      transition: background 0.18s, color 0.19s, box-shadow 0.18s;
+      position: relative;
       text-align: center;
-      font-family: 'Roboto', Arial, sans-serif;
+      line-height: 1.5;
+    }
+    .register-section .early-bird .icon {
+      margin-right: 10px;
+      font-size: 1.22em;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .register-section .early-bird:hover, .register-section .early-bird:focus {
+      background: #e0f2fe;
+      color: var(--primary);
+      box-shadow: 0 8px 28px #0ea5e933;
     }
     .contact-box h3 {
       color: var(--accent);
@@ -430,6 +453,8 @@
       main { padding-top: 70px; }
       .poster-image { height: 110px; }
       .highlight-gallery img { width: 44px; height: 44px;}
+      .register-section .early-bird { font-size: 1rem; padding: 7px 10px 7px 12px;}
+      .register-section .early-bird .icon { font-size: 1em;}
     }
     .fadein {
       opacity: 0;
@@ -503,7 +528,7 @@
     <!-- Registration Section -->
     <section id="register" class="register-section fadein" style="animation-delay:0.37s;">
       <a href="https://forms.gle/your-registration-link" target="_blank" class="register-btn">Register Now</a>
-      <p>Early birds get exclusive goodies!</p>
+      <span class="early-bird"><span class="icon">🎁</span>Early birds get <b>exclusive goodies!</b></span>
     </section>
     <!-- Contact Section -->
     <section id="contact" class="card contact-box fadein" style="animation-delay:0.5s;">
@@ -548,11 +573,11 @@
           overlay.classList.remove('active');
           hamburger.setAttribute('aria-expanded', 'false');
         });
+        // Improved navigation handler for ALL screen sizes and hamburger
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', function(e) {
             if (this.hash) {
               e.preventDefault();
-              // Scroll with offset for navbar height
               const target = document.querySelector(this.hash);
               const nav = document.querySelector('nav');
               let navHeight = nav ? nav.offsetHeight : 0;
@@ -561,6 +586,7 @@
                 window.scrollTo({ top: scrollPos, behavior: "smooth" });
               }
             }
+            // Always close hamburger/overlay after click (mobile & desktop)
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
             overlay.classList.remove('active');

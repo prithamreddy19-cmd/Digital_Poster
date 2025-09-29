@@ -4,91 +4,212 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Digital Event Poster</title>
-  <!-- Tailwind CSS via CDN (correct way) -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
       scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #6d28d9 0%, #6366f1 50%, #ec4899 100%);
+      min-height: 100vh;
     }
     .poster-title {
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.05em;
     }
+    nav {
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #c7d2fe;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      position: fixed;
+      width: 100%;
+      z-index: 20;
+      top: 0;
+      left: 0;
+    }
+    .nav-container {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: #4f46e5;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover {
+      color: #ec4899;
+      background: #f3e8ff;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 85px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    section {
+      width: 100%;
+      max-width: 430px;
+      margin-bottom: 36px;
+    }
+    .poster-box, .contact-box {
+      background: rgba(255,255,255,0.95);
+      border-radius: 24px;
+      box-shadow: 0 6px 24px rgba(67,56,202,0.15);
+      border: 1px solid #c7d2fe;
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .poster-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px #d1d5db44;
+    }
+    .poster-box p {
+      font-size: 1.1rem;
+      color: #374151;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+    .poster-details {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .poster-details span:first-child {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+    .highlights {
+      background: #e0e7ff;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 36px;
+      border: 1px solid #c7d2fe;
+      box-shadow: 0 2px 10px rgba(67,56,202,0.10);
+    }
+    .highlights h2 {
+      color: #4f46e5;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .highlights ul {
+      color: #374151;
+      font-size: 1.05rem;
+      padding-left: 20px;
+    }
+    .register-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .register-btn {
+      display: inline-block;
+      background: #ec4899;
+      color: #fff;
+      font-weight: bold;
+      padding: 14px 36px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #f472b6aa;
+      transition: background 0.2s;
+      margin-bottom: 8px;
+    }
+    .register-btn:hover {
+      background: #db2777;
+    }
+    .register-section p {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #6b7280;
+      text-align: center;
+    }
+    .contact-box h3 {
+      color: #4f46e5;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 1.08rem;
+    }
+    .contact-box a {
+      color: #4f46e5;
+      text-decoration: underline;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+    .contact-box .insta-link {
+      color: #ec4899;
+    }
+    .contact-box p, .contact-box span {
+      color: #374151;
+      font-size: 1rem;
+      margin-bottom: 3px;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 0 12px 0;
+      color: #fff;
+      opacity: 0.85;
+      font-size: 0.99rem;
+      margin-top: 36px;
+    }
+    /* Responsive */
+    @media (max-width: 500px) {
+      .poster-title { font-size: 1.5rem; }
+      section, .poster-box, .contact-box, .highlights { padding: 12px !important; }
+      .nav-container { flex-direction: column; gap: 8px; padding: 8px 4px;}
+      .nav-links { gap: 8px; font-size: 0.99rem;}
+      main { padding-top: 90px;}
+    }
   </style>
 </head>
-<body class="bg-gradient-to-tl from-violet-800 via-indigo-500 to-pink-400 min-h-screen">
+<body>
   <!-- Navigation Bar -->
-  <nav class="bg-white bg-opacity-90 fixed w-full z-20 top-0 left-0 border-b border-indigo-200 shadow-md">
-    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between py-3 px-4">
-      <a href="#poster" class="flex items-center gap-2">
-        <span class="poster-title text-2xl font-extrabold text-indigo-600 drop-shadow-sm">Campus Fest</span>
-      </a>
-      <button id="menu-toggle" class="md:hidden inline-flex items-center p-2 ml-3 text-sm text-indigo-700 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-200" aria-controls="navbar-menu" aria-expanded="false">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/>
-          <path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-      <div class="hidden md:flex md:items-center md:w-auto w-full" id="navbar-menu">
-        <ul class="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 font-medium">
-          <li><a href="#poster" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Poster</a></li>
-          <li><a href="#highlights" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Highlights</a></li>
-          <li><a href="#register" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Register</a></li>
-          <li><a href="#contact" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Contact</a></li>
-        </ul>
+  <nav>
+    <div class="nav-container">
+      <a href="#poster" style="text-decoration:none;"><span class="poster-title">Campus Fest</span></a>
+      <div class="nav-links">
+        <a href="#poster">Poster</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#register">Register</a>
+        <a href="#contact">Contact</a>
       </div>
-    </div>
-    <!-- Mobile Dropdown -->
-    <div class="md:hidden" id="mobile-menu" style="display: none;">
-      <ul class="px-4 pb-4 flex flex-col space-y-1 font-medium">
-        <li><a href="#poster" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Poster</a></li>
-        <li><a href="#highlights" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Highlights</a></li>
-        <li><a href="#register" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Register</a></li>
-        <li><a href="#contact" class="block py-2 px-3 text-indigo-700 hover:text-pink-600 transition">Contact</a></li>
-      </ul>
     </div>
   </nav>
-
-  <main class="flex flex-col items-center pt-24 md:pt-28 px-2">
+  <main>
     <!-- Poster Section -->
-    <section id="poster" class="w-full flex justify-center mb-10">
-      <div class="max-w-lg w-full rounded-3xl shadow-xl bg-white bg-opacity-90 p-6 sm:p-8 flex flex-col items-center border border-indigo-200">
-        <h1 class="poster-title text-4xl md:text-5xl font-extrabold text-indigo-700 mb-4 text-center drop-shadow-md">
-          Campus Fest 2025
-        </h1>
-        <p class="text-lg md:text-xl font-medium text-gray-700 mb-8 text-center">
-          Join us for an unforgettable day of fun, music, food, and creativity!
-        </p>
-        <div class="flex flex-col gap-4 w-full mb-8">
-          <div class="flex items-center justify-center gap-2">
-            <span class="text-indigo-600 font-semibold text-lg">
-              📅 Date:
-            </span>
-            <span class="text-gray-800">October 15, 2025</span>
-          </div>
-          <div class="flex items-center justify-center gap-2">
-            <span class="text-indigo-600 font-semibold text-lg">
-              🕒 Time:
-            </span>
-            <span class="text-gray-800">10:00 AM - 8:00 PM</span>
-          </div>
-          <div class="flex items-center justify-center gap-2">
-            <span class="text-indigo-600 font-semibold text-lg">
-              📍 Venue:
-            </span>
-            <span class="text-gray-800">Main Auditorium, Tech Park Campus</span>
-          </div>
-        </div>
+    <section id="poster" class="poster-box">
+      <h1 class="poster-title">Campus Fest 2025</h1>
+      <p>Join us for an unforgettable day of fun, music, food, and creativity!</p>
+      <div class="poster-details">
+        <div><span>📅 Date:</span> <span style="color:#111;">October 15, 2025</span></div>
+        <div><span>🕒 Time:</span> <span style="color:#111;">10:00 AM - 8:00 PM</span></div>
+        <div><span>📍 Venue:</span> <span style="color:#111;">Main Auditorium, Tech Park Campus</span></div>
       </div>
     </section>
-
     <!-- Highlights Section -->
-    <section id="highlights" class="w-full max-w-lg bg-indigo-100 rounded-3xl p-6 mb-10 border border-indigo-200 shadow-md">
-      <h2 class="text-xl font-bold text-indigo-700 mb-3">Event Highlights</h2>
-      <ul class="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
+    <section id="highlights" class="highlights">
+      <h2>Event Highlights</h2>
+      <ul>
         <li>Live Bands & DJ</li>
         <li>Food Stalls & Trucks</li>
         <li>Tech Expo & Workshops</li>
@@ -96,56 +217,21 @@
         <li>Surprise Celebrity Guest!</li>
       </ul>
     </section>
-
     <!-- Registration Section -->
-    <section id="register" class="w-full max-w-lg flex flex-col items-center mb-10">
-      <a href="https://forms.gle/your-registration-link" target="_blank" class="w-full sm:w-auto rounded-full bg-pink-500 hover:bg-pink-600 text-white font-bold px-8 py-4 text-lg shadow-md text-center transition">
-        Register Now
-      </a>
-      <p class="mt-4 text-sm text-gray-500 text-center">
-        Early birds get exclusive goodies!
-      </p>
+    <section id="register" class="register-section">
+      <a href="https://forms.gle/your-registration-link" target="_blank" class="register-btn">Register Now</a>
+      <p>Early birds get exclusive goodies!</p>
     </section>
-
     <!-- Contact Section -->
-    <section id="contact" class="w-full max-w-lg bg-white bg-opacity-90 rounded-3xl p-6 border border-indigo-200 shadow-md flex flex-col items-center mb-8">
-      <h3 class="text-lg font-bold text-indigo-700 mb-2">Contact</h3>
-      <p class="text-gray-700 mb-1">For more info, reach out:</p>
-      <a href="mailto:events@campusfest.edu" class="text-indigo-700 underline mb-1">events@campusfest.edu</a>
-      <span class="text-gray-500 text-sm">Or DM us on Instagram: <a href="https://instagram.com/campusfest" class="text-pink-600 underline">@campusfest</a></span>
+    <section id="contact" class="contact-box">
+      <h3>Contact</h3>
+      <p>For more info, reach out:</p>
+      <a href="mailto:events@campusfest.edu">events@campusfest.edu</a><br>
+      <span>Or DM us on Instagram: <a href="https://instagram.com/campusfest" class="insta-link">@campusfest</a></span>
     </section>
   </main>
-
-  <footer class="text-center py-6 text-white text-opacity-80 text-sm">
+  <footer>
     © 2025 Campus Fest. All rights reserved.
   </footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navbarMenu = document.getElementById('navbar-menu');
-    const menuOpenIcon = document.getElementById('menu-open');
-    const menuCloseIcon = document.getElementById('menu-close');
-    menuToggle.addEventListener('click', function() {
-      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-        mobileMenu.style.display = 'block';
-        menuOpenIcon.classList.add('hidden');
-        menuCloseIcon.classList.remove('hidden');
-      } else {
-        mobileMenu.style.display = 'none';
-        menuOpenIcon.classList.remove('hidden');
-        menuCloseIcon.classList.add('hidden');
-      }
-    });
-    // Hide mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.style.display = 'none';
-        menuOpenIcon.classList.remove('hidden');
-        menuCloseIcon.classList.add('hidden');
-      });
-    });
-  </script>
 </body>
 </html>
